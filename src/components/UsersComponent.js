@@ -4,31 +4,28 @@ import { getUsers } from '../redux/actions/users';
 import CardComponent from './CardComponent';
 
 
-const UsersComponent = (props) => {
+const UsersComponent = () => {
   const dispatch = useDispatch();
   const users = useSelector(state => state.users.users);
+  const loading = useSelector(state => state.users.loading);
+  const error = useSelector(state => state.users.error);
+
 
   useEffect(()=> {
-    dispatch(getUsers(
-      [{
-        id: 1,
-        name: 'Kenny Quach',
-        company: {
-          name: 'Quadency',
-          catchPhrase: 'Crypto Trading Platform'
-        }
-    }]))
+    dispatch(getUsers())
   },[])
 
   return (
     <>
-      {users.length && users.map((user)=> {
+    {users.loading && <p>Loading...</p>}
+    {users.length && users.map((user)=> {
         return(
           <CardComponent key={user.id} user={user} />
         )
          
       })}
       {!users.length && <p>No users available!</p>}
+      {error && !loading && <p>{error}</p>}
     </>
   )
 }
