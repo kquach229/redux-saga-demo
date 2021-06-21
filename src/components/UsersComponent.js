@@ -5,13 +5,18 @@ import CardComponent from './CardComponent';
 
 
 const UsersComponent = () => {
+
+  // Use hook for dispatching actions in functional components
   const dispatch = useDispatch();
+
+  // Define the state to be passed to props
   const users = useSelector(state => state.users.users);
   const loading = useSelector(state => state.users.loading);
   const error = useSelector(state => state.users.error);
 
 
   useEffect(()=> {
+    // Dispatch the getUsers action when component mounts
     dispatch(getUsers())
   },[])
 

@@ -2,7 +2,6 @@ import React from 'react';
 
 
 const CardComponent = (props) => {
-
   return (
     <div className="card">
       <div className="card-body">

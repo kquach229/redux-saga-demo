@@ -6,7 +6,7 @@ const initialState = {
   error: null,
 }
 
-
+// The users reducer
 export default function users(state = initialState, action) {
   switch(action.type) {
     case type.GET_USERS_REQUESTED:

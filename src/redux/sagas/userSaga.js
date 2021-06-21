@@ -1,7 +1,10 @@
+// Import necessary saga elements
 import { call, put, takeEvery } from "redux-saga/effects";
 
+// Define the url to fetch the request at
 const apiUrl = 'https://jsonplaceholder.typicode.com/users';
 
+// Define the function that will hold the fetch
 function getApi() {
   return fetch(apiUrl, {
     method: 'GET',
@@ -15,6 +18,7 @@ function getApi() {
   })
 }
 
+// Fetch users
 function* fetchUsers(action) {
   try {
     const users = yield call(getApi);
@@ -30,8 +34,10 @@ function* fetchUsers(action) {
   }
 }
 
+// Define usersSaga
 function* usersSaga() {
   yield takeEvery('GET_USERS_REQUESTED', fetchUsers);
 }
 
+// Export usersSaga
 export default usersSaga;
